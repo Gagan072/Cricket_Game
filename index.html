@@ -3,10 +3,46 @@
 <head>
     <title>Document</title>
     <link rel="stylesheet" href="cricket.css">
+    <style>
+        body{
+            padding: 0px;
+            text-align: center;
+            background-image: url('https://tse4.mm.bing.net/th?id=OIP.XjGOPgPVyNsTh1W-TW-zkAHaEK&pid=Api&P=0&h=180')!important;
+            background-size: 100% 100%;
+            
+                     
+            background-attachment: fixed;
+            
+            background-repeat: no-repeat;
+        }
+
+        div{
+            margin: auto;
+            background-color: rgb(200, 236, 166); 
+            align-items: center;
+            background: transparent;
+            display: table;
+            background: none;
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+        }
+            
+        marquee{
+            background-color: rgb(163, 219, 113);
+            border-radius: 40px;
+            margin: 2px;
+            padding: -5px;
+            font-size: 0.15in;
+            
+            
+        }
+        
+    </style>
 </head>
 <body>
-    <h1>Bat Ball Stump Game</h1>
     
+    <marquee behavior="alternate" direction="left" loop="infinity" ><h1 style="color: rgb(0, 0, 0);  ">Bat Ball Stump Game</h1></marquee>
+    <div class="container glass">
     <button class="choice-btn" onclick="
     let computerChoice=randomGeneartor();
     let msgRes = getResult('Bat',computerChoice);
@@ -28,16 +64,17 @@
     displayRes('Stump',computerChoice,msgRes);
     "
     ><img src="images/stump.png" alt="Stump" class="choice-img"></button>
-
+<div>
     <h3 id="user-move"></h3>
     <h3 id="computer-move"></h3>
     <h3 id="result"></h3>
-    <h3 id="score"></h3>
-
-    <button onclick="localStorage.clear()
-    resetScore();
-    ">Reset</button>
-
+    <h3 id="score" style="color: 
+    rgb(240, 4, 4);"></h3>
+</div>
+    <button class="restart"   onclick="localStorage.clear()
+    resetScore(); 
+    "><img Restart: src="images/restart.png" alt="restart" class="choice-img"></button>
+</div>
     <script>
         let scoreStr = localStorage.getItem('Score');
         let scorecard;

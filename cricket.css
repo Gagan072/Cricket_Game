@@ -1,16 +1,40 @@
 body{
     text-align: center;
+    background-color: rgb(227, 205, 197);
 }
 .choice-btn{
-    height: 100px;
-    width: 100px;
+    height: 120px;
+    width: 120px;
     margin:10px;
-    border: none;
-    border-radius: 50px;
+   border: 2px solid black;
+    border-radius: 60px;
     background-color:rgb(210, 230, 148);
-   
+    background: transparent;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
 }
 .choice-img{
-    height: 70px;
+    height: 80px;
     cursor: pointer;
+}
+.restart{
+    background: url('images/restart.png'),rgb(210, 230, 148);
+    margin: 10px;
+    border: none;
+    background: transparent;
+}
+.conatiner{
+    width: 500px;
+    height: 300px;
+    margin: 200px auto;
+}
+
+.glass{
+    background: linear-gradient(135deg,rgba(255,255,255,0.1),rgba(255,255,255,0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.18);
+    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.37);
 }
