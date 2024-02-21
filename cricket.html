@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <link rel="stylesheet" href="cricket.css">
+</head>
+<body>
+    <h1>Bat Ball Stump Game</h1>
+    
+    <button class="choice-btn" onclick="
+    let computerChoice=randomGeneartor();
+    let msgRes = getResult('Bat',computerChoice);
+    displayRes('Bat',computerChoice,msgRes);
+    "><img src="images/bat.png" alt="Bat" class="choice-img"></button>
+
+    <button class="choice-btn"
+    onclick="
+    computerChoice= randomGeneartor();  
+    msgRes = getResult('Ball',computerChoice);
+    displayRes('Ball',computerChoice,msgRes);
+    "
+    ><img src="images/ball.png" alt="Ball" class="choice-img"></button>
+
+    <button class="choice-btn"
+    onclick="
+    computerChoice=randomGeneartor();
+    msgRes = getResult('Stump',computerChoice);
+    displayRes('Stump',computerChoice,msgRes);
+    "
+    ><img src="images/stump.png" alt="Stump" class="choice-img"></button>
+
+    <h3 id="user-move"></h3>
+    <h3 id="computer-move"></h3>
+    <h3 id="result"></h3>
+    <h3 id="score"></h3>
+
+    <button onclick="localStorage.clear()
+    resetScore();
+    ">Reset</button>
+
+    <script>
+        let scoreStr = localStorage.getItem('Score');
+        let scorecard;
+        resetScore(scoreStr);
+
+        function resetScore(scoreStr){
+        scorecard = scoreStr ? JSON.parse(scoreStr):{
+            win : 0,
+            lost: 0,
+            tie : 0,
+        };
+            scorecard.displayRes=function(){
+                return `No of matches Won:${scorecard.win}, Lost:${scorecard.lost}, Tie: ${scorecard.tie}`;
+            };
+
+            displayRes();
+        }
+    
+
+        function randomGeneartor(){
+            let generateRandom = Math.random() * 3;
+
+            if (generateRandom>0 && generateRandom<=1){
+            return 'Bat';
+                            } 
+            else if (generateRandom>1 &&    generateRandom<=2) {
+            return 'Ball';
+                            }
+            else {
+            return 'Stump';
+                } 
+        }
+
+
+        function getResult(userMove,computerMove){
+            if (userMove==='Bat'){
+                if (computerMove==='Bat'){
+                    scorecard.tie++;
+                    return `it's a Tie`;
+                }
+                else if(computerMove==='Ball'){
+                    scorecard.win++;
+                    return 'user Won';
+                }
+                else if (computerMove==='Stump'){
+                    scorecard.lost++;
+                    return 'computer Won';
+                }
+            }
+
+            else if(userMove==='Ball'){
+                if (computerMove==='Bat'){
+                    scorecard.lost++;
+                    return `computer Won`;
+                }
+                else if(computerMove==='Ball'){
+                    scorecard.tie++;
+                    return `it's a Tie`;
+                }
+                else if (computerMove==='Stump'){
+                    scorecard.win++;
+                    return 'user Won';
+                }
+            }
+
+            else{
+                if (computerMove==='Bat'){
+                    scorecard.win++;
+                    return `user Won`;
+                }
+                else if(computerMove==='Ball'){
+                    scorecard.lost++;
+                    return `computer Won`;
+                }
+                else if (computerMove==='Stump'){
+                    scorecard.tie++;
+                    return 'Its a Tie';
+                }
+            }
+        }
+
+
+        function displayRes(userMove,computerMove,result){
+            localStorage.setItem('Score',JSON.stringify(scorecard));
+            
+            document.querySelector('#user-move').innerText = userMove ? `You have chosen ${userMove}` : '';
+
+            document.querySelector('#computer-move').innerText = computerMove ? `Computer chosen ${computerMove}` : '';
+
+            document.querySelector('#result').innerText = result || '';
+
+            document.querySelector('#score').innerText = scorecard.displayRes();
+
+
+        }
+
+
+        
+
+
+        
+    </script>
+</body>
+</html>
